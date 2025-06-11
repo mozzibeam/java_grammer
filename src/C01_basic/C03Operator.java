@@ -63,6 +63,13 @@ public class C03Operator {
 //        boolean b3 = !(num2 < 10 || num2 > 30);
 
 //        비트연산자 : 컴퓨터의 연산방식 (실전 활용도 없음). &, |, ^, <<, >>
+        int n1 = 5;
+        int n2 = 4;
+//        두 수를 &비트연산 하게 되면 각 자릿수에 모두 1이 있어야 1의 결과값이 나옴
+        System.out.println(n1&n2);
+        System.out.println(n1|n2);
+//        << : 해당 숫자값 * 2, >> : 해당 숫자값 / 2
+        System.out.println(n1<<1);
 
 
     }
