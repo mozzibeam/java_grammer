@@ -91,8 +91,8 @@ public class C10BoardService {
                         System.out.println("회원 목록이 없습니다.");
                     } else {
                         System.out.println("전체 회원 목록을 조회합니다.");
-                        for (Author author : authorList) {
-                            System.out.println(author);
+                        for (Author a : authorList) {
+                            System.out.println(a);
                         }
                     }
                     break;
@@ -144,8 +144,8 @@ public class C10BoardService {
                 case 6: // 특정 작성자의 모든 게시글 보기
                     System.out.print("조회할 작성자의 ID를 입력하세요: ");
                     long authorId = Long.parseLong(br.readLine());
-                    boolean authorExists = false;
 
+                    boolean authorExists = false;
                     for (Author author : authorList) {
                         if (author.getAuthorId() == authorId) {
                             authorExists = true;
@@ -184,20 +184,21 @@ class Author {
     private String name;
     private String email;
     private String password;
-    private List<Post> aPost = new ArrayList<>();
+    private List<Post> postList;
 
     public Author(String name, String email, String password) {
         this.authorId = ++commonId;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.postList = new ArrayList<>();
     }
 
     public long getAuthorId() { return authorId; }
     public String getName() { return name; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
-    public List<Post> getaPost() { return aPost; }
+    public List<Post> getaPost() { return postList; }
 
     @Override
     public String toString() {
@@ -210,6 +211,7 @@ class Post {
     private long postId;
     private String title;
     private String content;
+//    객체 안의 객체를 선언함으로서 post객체에서 쉽게 author객체에 접근 가능
     private Author author;
 
     public Post(String title, String content, Author author) {
@@ -217,11 +219,14 @@ class Post {
         this.title = title;
         this.content = content;
         this.author = author;
+
     }
 
     public long getPostId() { return postId; }
     public String getTitle() { return title; }
     public String getContent() { return content; }
     public Author getAuthor() { return author; }
-}
 
+    @Override
+    public String toString() { return "게시글 Id: " + postId + ", 제목: " + title + ", 내용: " + content + ", 작성자: " + author;}
+}
